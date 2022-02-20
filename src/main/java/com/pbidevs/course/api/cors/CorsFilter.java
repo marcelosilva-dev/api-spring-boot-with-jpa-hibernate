@@ -22,7 +22,7 @@ import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
 @Order(Ordered.HIGHEST_PRECEDENCE)
 public class CorsFilter implements Filter {
 
-	private String originPermitida = "http://localhost:8080";
+	private String originPermitida = "https://clone-amazon-vuejs.herokuapp.com/";
 	
 	
 	// LIBERADO ACESSO DE CORS PARA APENAS UM DOMINIO
