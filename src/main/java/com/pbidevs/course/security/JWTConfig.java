@@ -32,8 +32,8 @@ public class JWTConfig extends WebSecurityConfigurerAdapter {
     @Override
     protected void configure(HttpSecurity http) throws Exception {
         http.csrf().disable().authorizeRequests()
-        		.antMatchers(HttpMethod.OPTIONS, "/login").permitAll()
                 .antMatchers(HttpMethod.POST, "/login").permitAll()
+        		.antMatchers(HttpMethod.OPTIONS, "/login").permitAll()
                 .antMatchers(HttpMethod.GET, "/").permitAll()
                 .antMatchers(HttpMethod.GET, "/auth-test").permitAll()
                 .antMatchers(HttpMethod.GET, "/products").permitAll()
