@@ -22,14 +22,14 @@ import com.pbidevs.course.services.PaymentService;
 import com.pbidevs.course.services.UserService;
 
 @RestController
-@RequestMapping(value = "/auth")
+@RequestMapping(value = "/auth-test")
 public class AuthResource {
 	
 	@Autowired
 	private UserService service;
 	
 	@GetMapping
-	public ResponseEntity<Boolean> validatePassword(@RequestParam String login,
+	public ResponseEntity<User> validatePassword(@RequestParam String login,
 													@RequestParam String password) throws UnsupportedEncodingException {
 		// hash password
 		BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
@@ -37,7 +37,7 @@ public class AuthResource {
 		Optional<User> optUser = Optional.ofNullable(service.findByEmail(login));
 		
 		if (optUser.isEmpty()) {
-			return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body(false);
+			return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body(null);
 		}
 		
 		boolean valid = false;
@@ -46,6 +46,6 @@ public class AuthResource {
 		valid = encoder.matches(password, user.getPassword());
 		
 		HttpStatus status = (valid) ? HttpStatus.OK : HttpStatus.UNAUTHORIZED;
-		return ResponseEntity.status(status).body(valid);
+		return ResponseEntity.status(status).body(user);
 	}
 }
