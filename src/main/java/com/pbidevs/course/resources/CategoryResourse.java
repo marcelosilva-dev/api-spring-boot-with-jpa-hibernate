@@ -20,7 +20,6 @@ import com.pbidevs.course.services.CategoryService;
 
 @RestController
 @RequestMapping(value = "/categories")
-@SpringBootApplication(exclude = {SecurityAutoConfiguration.class})
 public class CategoryResourse {
 	
 	@Autowired

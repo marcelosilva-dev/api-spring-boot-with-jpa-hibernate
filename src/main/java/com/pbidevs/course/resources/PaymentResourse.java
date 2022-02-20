@@ -16,7 +16,6 @@ import com.pbidevs.course.services.PaymentService;
 
 @RestController
 @RequestMapping(value = "/payments")
-@SpringBootApplication(exclude = {SecurityAutoConfiguration.class})
 public class PaymentResourse {
 	
 	@Autowired

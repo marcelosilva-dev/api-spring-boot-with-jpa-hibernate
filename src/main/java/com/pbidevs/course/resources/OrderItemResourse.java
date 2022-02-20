@@ -16,7 +16,6 @@ import com.pbidevs.course.services.OrderItemService;
 
 @RestController
 @RequestMapping(value = "/order-item")
-@SpringBootApplication(exclude = {SecurityAutoConfiguration.class})
 public class OrderItemResourse {
 	
 	@Autowired

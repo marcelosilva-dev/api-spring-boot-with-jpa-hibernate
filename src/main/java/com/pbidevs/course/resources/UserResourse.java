@@ -29,7 +29,6 @@ import com.pbidevs.course.services.UserService;
 
 @RestController
 @RequestMapping(value = "/users")
-@SpringBootApplication(exclude = {SecurityAutoConfiguration.class})
 public class UserResourse {
 	
 	@Autowired
@@ -60,27 +59,7 @@ public class UserResourse {
 		
 		return ResponseEntity.created(uri).body(user);
 	}
-	
-	@GetMapping("/auth")
-	public ResponseEntity<Boolean> validatePassword(@RequestParam String login,
-													@RequestParam String password) throws UnsupportedEncodingException {
-		// hash password
-		BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
-		
-		Optional<User> optUser = Optional.ofNullable(service.findByEmail(login));
-		
-		if (optUser.isEmpty()) {
-			return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body(false);
-		}
-		
-		boolean valid = false;
-		
-		User user = optUser.get();
-		valid = encoder.matches(password, user.getPassword());
-		
-		HttpStatus status = (valid) ? HttpStatus.OK : HttpStatus.UNAUTHORIZED;
-		return ResponseEntity.status(status).body(valid);
-	}
+
 	
 	@DeleteMapping(value = "/{id}")
 	public ResponseEntity<Void> delete(@PathVariable Long id) {

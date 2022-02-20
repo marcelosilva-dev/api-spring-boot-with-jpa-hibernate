@@ -13,7 +13,6 @@ import com.pbidevs.course.resources.extra.Root;
 
 @RestController
 @RequestMapping(value = "/")
-@SpringBootApplication(exclude = {SecurityAutoConfiguration.class})
 public class RootResourse {
 	
 	@GetMapping
