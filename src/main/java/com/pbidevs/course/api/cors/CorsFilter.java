@@ -22,7 +22,7 @@ import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
 @Order(Ordered.HIGHEST_PRECEDENCE)
 public class CorsFilter implements Filter {
 
-	private String originPermitida = "http://clone-amazon-vuejs.s3-website.us-east-2.amazonaws.com/";
+	private String originPermitida = "http://clone-amazon-vuejs.s3-website.us-east-2.amazonaws.com";
 	
 	
 	// LIBERADO ACESSO DE CORS PARA APENAS UM DOMINIO
