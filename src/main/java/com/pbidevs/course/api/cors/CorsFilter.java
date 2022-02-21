@@ -1,21 +1,32 @@
 package com.pbidevs.course.api.cors;
 
-import org.springframework.context.annotation.Configuration;
-import org.springframework.web.servlet.config.annotation.CorsRegistry;
-import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
+import java.io.IOException;
 
-@Configuration
-public class CorsConfiguration implements WebMvcConfigurer {
+import javax.servlet.FilterChain;
+import javax.servlet.ServletException;
+import javax.servlet.ServletRequest;
+import javax.servlet.ServletResponse;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
+import org.springframework.core.Ordered;
+import org.springframework.core.annotation.Order;
+import org.springframework.stereotype.Component;
+import javax.servlet.Filter;
+
+@Component
+@Order(Ordered.HIGHEST_PRECEDENCE)
+public class CorsFilter implements Filter {
 	
-    @Override
+    /* @Override
     public void addCorsMappings(CorsRegistry registry) {
         //liberando app cliente 1
         registry.addMapping("/**")
              .allowedOrigins("https://amazon-clone-vuejs.netlify.app/")
             .allowedMethods("GET", "POST", "PUT", "DELETE", "OPTIONS", "HEAD", "TRACE", "CONNECT");
-    }
+    } */
 
-	// private String originPermitida = "http://clone-amazon-vuejs.s3-website.us-east-2.amazonaws.com";
+	private String originPermitida = "https://amazon-clone-vuejs.netlify.app/";
 	
 	
 	// LIBERADO ACESSO DE CORS PARA APENAS UM DOMINIO
@@ -29,7 +40,7 @@ public class CorsConfiguration implements WebMvcConfigurer {
     } */
 
     // CASO QUERIA FILTRAR APENAS UM DOMINIO
-    /* @Override
+    @Override
     public void doFilter(ServletRequest req, ServletResponse resp, FilterChain chain)
             throws IOException, ServletException {
         		
@@ -49,6 +60,6 @@ public class CorsConfiguration implements WebMvcConfigurer {
 			chain.doFilter(req, resp);
 		} 
         
-    } */
+    }
     
 }
