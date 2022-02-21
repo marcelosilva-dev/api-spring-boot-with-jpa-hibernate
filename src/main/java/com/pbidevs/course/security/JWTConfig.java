@@ -42,6 +42,7 @@ public class JWTConfig extends WebSecurityConfigurerAdapter {
                 .antMatchers(HttpMethod.POST, "/users").permitAll()
                 .anyRequest().authenticated()
                 .and()
+                .cors().disable()
                 .addFilter(new JWTFilterAutentication(authenticationManager()))
                 .addFilter(new JWTValidationFilter(authenticationManager()))
                 .sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS);
