@@ -31,7 +31,7 @@ public class JWTConfig extends WebSecurityConfigurerAdapter {
 
     @Override
     protected void configure(HttpSecurity http) throws Exception {
-        http.csrf().disable().authorizeRequests()
+        http.authorizeRequests()
         		.antMatchers(HttpMethod.OPTIONS, "/login").permitAll()
                 .antMatchers(HttpMethod.POST, "/login").permitAll()
                 .antMatchers(HttpMethod.GET, "/").permitAll()
@@ -41,8 +41,7 @@ public class JWTConfig extends WebSecurityConfigurerAdapter {
                 .antMatchers(HttpMethod.OPTIONS, "/users").permitAll()
                 .antMatchers(HttpMethod.POST, "/users").permitAll()
                 .anyRequest().authenticated()
-                .and()
-                .cors().disable()
+                .and().cors().and().csrf().disable()
                 .addFilter(new JWTFilterAutentication(authenticationManager()))
                 .addFilter(new JWTValidationFilter(authenticationManager()))
                 .sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS);
